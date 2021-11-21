@@ -1,0 +1,427 @@
+> python .\example.py
+SwinTransformer(
+  (stage1): StageModule(
+    (patch_partition): PatchMerging(
+      (patch_merge): Unfold(kernel_size=4, dilation=1, padding=0, stride=4)
+      (linear): Linear(in_features=48, out_features=96, bias=True)
+    )
+    (layers): ModuleList(
+      (0): ModuleList(
+        (0): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (to_qkv): Linear(in_features=96, out_features=288, bias=False)
+                (to_out): Linear(in_features=96, out_features=96, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=96, out_features=384, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=384, out_features=96, bias=True)
+                )
+              )
+            )
+          )
+        )
+        (1): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (cyclic_shift): CyclicShift()
+                (cyclic_back_shift): CyclicShift()
+                (to_qkv): Linear(in_features=96, out_features=288, bias=False)
+                (to_out): Linear(in_features=96, out_features=96, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=96, out_features=384, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=384, out_features=96, bias=True)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (stage2): StageModule(
+    (patch_partition): PatchMerging(
+      (patch_merge): Unfold(kernel_size=2, dilation=1, padding=0, stride=2)
+      (linear): Linear(in_features=384, out_features=192, bias=True)
+    )
+    (layers): ModuleList(
+      (0): ModuleList(
+        (0): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (to_qkv): Linear(in_features=192, out_features=576, bias=False)
+                (to_out): Linear(in_features=192, out_features=192, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=192, out_features=768, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=768, out_features=192, bias=True)
+                )
+              )
+            )
+          )
+        )
+        (1): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (cyclic_shift): CyclicShift()
+                (cyclic_back_shift): CyclicShift()
+                (to_qkv): Linear(in_features=192, out_features=576, bias=False)
+                (to_out): Linear(in_features=192, out_features=192, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=192, out_features=768, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=768, out_features=192, bias=True)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (stage3): StageModule(
+    (patch_partition): PatchMerging(
+      (patch_merge): Unfold(kernel_size=2, dilation=1, padding=0, stride=2)
+      (linear): Linear(in_features=768, out_features=384, bias=True)
+    )
+    (layers): ModuleList(
+      (0): ModuleList(
+        (0): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (to_qkv): Linear(in_features=384, out_features=1152, bias=False)
+                (to_out): Linear(in_features=384, out_features=384, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=384, out_features=1536, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=1536, out_features=384, bias=True)
+                )
+              )
+            )
+          )
+        )
+        (1): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (cyclic_shift): CyclicShift()
+                (cyclic_back_shift): CyclicShift()
+                (to_qkv): Linear(in_features=384, out_features=1152, bias=False)
+                (to_out): Linear(in_features=384, out_features=384, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=384, out_features=1536, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=1536, out_features=384, bias=True)
+                )
+              )
+            )
+          )
+        )
+      )
+      (1): ModuleList(
+        (0): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (to_qkv): Linear(in_features=384, out_features=1152, bias=False)
+                (to_out): Linear(in_features=384, out_features=384, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=384, out_features=1536, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=1536, out_features=384, bias=True)
+                )
+              )
+            )
+          )
+        )
+        (1): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (cyclic_shift): CyclicShift()
+                (cyclic_back_shift): CyclicShift()
+                (to_qkv): Linear(in_features=384, out_features=1152, bias=False)
+                (to_out): Linear(in_features=384, out_features=384, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=384, out_features=1536, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=1536, out_features=384, bias=True)
+                )
+              )
+            )
+          )
+        )
+      )
+      (2): ModuleList(
+        (0): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (to_qkv): Linear(in_features=384, out_features=1152, bias=False)
+                (to_out): Linear(in_features=384, out_features=384, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=384, out_features=1536, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=1536, out_features=384, bias=True)
+                )
+              )
+            )
+          )
+        )
+        (1): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (cyclic_shift): CyclicShift()
+                (cyclic_back_shift): CyclicShift()
+                (to_qkv): Linear(in_features=384, out_features=1152, bias=False)
+                (to_out): Linear(in_features=384, out_features=384, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=384, out_features=1536, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=1536, out_features=384, bias=True)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (stage4): StageModule(
+    (patch_partition): PatchMerging(
+      (patch_merge): Unfold(kernel_size=2, dilation=1, padding=0, stride=2)
+      (linear): Linear(in_features=1536, out_features=768, bias=True)
+    )
+    (layers): ModuleList(
+      (0): ModuleList(
+        (0): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (to_qkv): Linear(in_features=768, out_features=2304, bias=False)
+                (to_out): Linear(in_features=768, out_features=768, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=768, out_features=3072, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=3072, out_features=768, bias=True)
+                )
+              )
+            )
+          )
+        )
+        (1): SwinBlock(
+          (attention_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (fn): WindowAttention(
+                (cyclic_shift): CyclicShift()
+                (cyclic_back_shift): CyclicShift()
+                (to_qkv): Linear(in_features=768, out_features=2304, bias=False)
+                (to_out): Linear(in_features=768, out_features=768, bias=True)
+              )
+            )
+          )
+          (mlp_block): Residual(
+            (fn): PreNorm(
+              (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (fn): FeedForward(
+                (net): Sequential(
+                  (0): Linear(in_features=768, out_features=3072, bias=True)
+                  (1): GELU()
+                  (2): Linear(in_features=3072, out_features=768, bias=True)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (mlp_head): Sequential(
+    (0): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=768, out_features=3, bias=True)
+  )
+)
+tensor([[[[-3.8027e-01, -5.1500e-01, -1.9269e-01,  ..., -4.6042e-01,
+            1.4935e+00, -1.3796e+00],
+          [ 2.2836e-01, -3.3062e-02,  3.6841e-01,  ...,  1.3347e-01,
+            6.1709e-01, -5.8807e-01],
+          [-1.3408e+00, -1.3029e+00,  5.1933e-01,  ..., -3.3710e-01,
+           -7.0257e-01, -9.5911e-02],
+          ...,
+          [ 2.9747e-01,  5.4902e-02, -5.5291e-02,  ..., -1.0855e+00,
+           -4.5121e-01, -2.9646e-01],
+          [-1.0131e+00, -2.6613e-01, -4.5404e-01,  ..., -5.4139e-01,
+            1.5373e+00, -3.9127e-01],
+          [ 1.7044e+00,  4.6032e-01,  7.7791e-01,  ..., -1.6128e+00,
+            1.3279e+00,  6.2656e-02]],
+
+         [[-1.0516e+00, -1.4287e-03,  6.1603e-02,  ..., -6.9702e-01,
+            1.5485e+00,  1.3784e+00],
+          [ 1.4721e-01, -1.0612e+00, -4.1008e-01,  ..., -6.2878e-03,
+           -2.0026e-01, -6.1007e-01],
+          [ 1.0162e+00, -2.1529e+00,  7.0577e-01,  ..., -5.4508e-01,
+            7.5943e-01, -9.0381e-01],
+          ...,
+          [ 1.1471e+00, -5.9092e-01,  1.3678e+00,  ...,  2.7809e+00,
+            4.1865e-01, -1.3036e+00],
+          [-9.2518e-01,  1.4264e+00,  4.6384e-01,  ..., -2.0104e+00,
+           -1.0896e-01, -1.1527e+00],
+          [-3.7379e-01,  1.3552e+00, -1.0933e+00,  ...,  9.5986e-01,
+            9.1274e-01, -7.9983e-01]],
+
+         [[ 1.3041e+00,  3.8968e-01, -1.3277e+00,  ...,  9.7556e-02,
+           -9.6282e-01,  2.7256e-01],
+          [-1.3883e+00, -9.2390e-01,  2.7798e-01,  ...,  3.3242e-01,
+           -6.1285e-01, -2.0270e-01],
+          [ 2.3886e-01,  2.6061e-01, -5.3019e-01,  ..., -9.1526e-01,
+            1.1465e-01, -5.9478e-01],
+          ...,
+          [-8.7080e-01,  1.7822e+00, -1.2126e+00,  ..., -4.2370e-01,
+            2.5019e-02,  6.2833e-01],
+          [-6.0154e-01, -2.1307e-02,  1.3274e+00,  ..., -1.8589e-01,
+            1.4283e+00,  5.6843e-01],
+          [-8.3858e-01, -1.4101e+00, -2.1949e-01,  ..., -3.0989e-01,
+            1.1577e+00, -1.4478e+00]]],
+
+
+        [[[ 2.7189e-01, -9.2350e-02,  9.7636e-01,  ..., -1.8602e+00,
+           -3.4743e-01, -4.3546e-01],
+          [ 2.6387e-01, -1.1954e+00,  3.0605e-02,  ..., -7.6323e-01,
+            1.1438e-01, -2.2443e+00],
+          [-2.2013e+00, -1.6593e+00, -1.1611e+00,  ...,  7.0532e-01,
+            7.6690e-02, -2.1485e+00],
+          ...,
+          [ 5.5388e-01,  1.3208e+00,  1.1764e+00,  ..., -1.2018e+00,
+            1.4277e-01,  1.5388e+00],
+          [ 5.4475e-01, -2.3529e-02, -3.6866e-01,  ..., -1.2928e+00,
+           -2.1365e+00, -2.0571e-01],
+          [ 1.5621e+00,  5.1624e-01,  6.5135e-01,  ...,  3.0376e-01,
+           -5.6012e-01,  1.1211e+00]],
+
+         [[ 1.4108e-01, -3.7835e-01, -7.8170e-01,  ..., -3.2623e-01,
+            3.3763e-01, -7.2280e-01],
+          [ 7.8274e-01,  3.2239e-02, -8.3501e-01,  ..., -1.7931e+00,
+           -1.1494e+00, -1.0982e+00],
+          [ 8.9033e-01,  1.1709e+00,  4.2861e-01,  ..., -6.9004e-02,
+            7.9930e-01, -9.2914e-01],
+          ...,
+          [-1.8319e-01,  2.7095e-01, -8.9521e-01,  ...,  2.0723e-01,
+            3.9896e-01, -1.0281e+00],
+          [ 2.2967e+00,  1.1368e-01, -4.3565e-01,  ..., -7.0414e-01,
+            1.5569e-01,  9.0999e-01],
+          [-1.6746e-01, -9.1910e-01, -1.2778e+00,  ..., -3.3415e-01,
+            3.3943e-01, -5.7468e-01]],
+
+         [[ 1.0584e+00, -1.9659e-01, -3.9517e-02,  ...,  1.3504e+00,
+            1.2261e+00, -3.9760e-01],
+          [ 6.4011e-01,  1.9565e+00,  4.4153e-01,  ...,  6.1064e-01,
+           -3.4912e-01, -3.0945e-01],
+          [ 7.5411e-01, -5.7139e-01,  8.9422e-01,  ..., -3.7931e-01,
+            5.0253e-02,  1.2971e+00],
+          ...,
+          [-4.9861e-01,  1.4286e+00, -2.9715e+00,  ..., -6.6073e-02,
+            6.2672e-01, -2.6557e-01],
+          [ 1.3318e-01, -8.1488e-01,  3.8436e-01,  ..., -1.3885e-01,
+            1.2383e+00, -2.6927e-01],
+          [ 1.4141e+00, -4.0669e-01,  4.1711e-01,  ..., -9.6915e-01,
+           -1.6844e-01,  1.2788e+00]]]])
+torch.Size([2, 3, 224, 224])
+tensor([[ 0.1409,  0.2609, -0.2047],
+        [ 0.4097,  0.1047, -0.0604]], grad_fn=<AddmmBackward>)
+torch.Size([2, 3])
