@@ -24,7 +24,7 @@ def show_img(data):
 #     io.show()
 
 # window下的文件夹路径
-path = r'D:\Download\Wechat\WeChat Files\wxid_v9z9ks7h6bou22\FileStorage\File\2021-08\TrainingData\TrainingData\1_QSM.nii.gz'
+path = '../data/CAT08/dataset00/image00.nii.gz'
 data = read_img(path)
 print(data.shape)  # queue, height, width
 show_img(data)

@@ -3,7 +3,7 @@ from matplotlib import pylab as plt
 import nibabel as nib
 from nibabel.viewers import OrthoSlicer3D
 
-file = r'D:\Download\Wechat\WeChat Files\wxid_v9z9ks7h6bou22\FileStorage\File\2021-08\TrainingData\TrainingData\1_QSM.nii.gz'
+file = '../data/CAT08/dataset00/image00.nii.gz'
 img = nib.load(file)
 print(img)
 print('————————————————————')

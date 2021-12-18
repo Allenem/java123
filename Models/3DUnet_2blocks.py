@@ -93,10 +93,10 @@ image_size = [128, 128, 128]
 x = torch.Tensor(2, 3, image_size[0], image_size[1],
                  image_size[2])  # batch_size, channel, w, h, frames
 x.to(device)
-print("x size: {}".format(x.size()))
+print("x size: {}".format(x.size())) # x size: torch.Size([2, 3, 128, 128, 128])
 
 model = Unet3D()
 print(model)
 
 out = model(x)
-print("out size: {}".format(out.size()))
+print("out size: {}".format(out.size())) # out size: torch.Size([2, 1, 128, 128, 128])

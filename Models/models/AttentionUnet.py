@@ -132,15 +132,15 @@ class AttU_Net(nn.Module):
 
         return d1
 
-
-net = AttU_Net(img_ch=3, output_ch=1)
-print(net)
-print('# of net parameters:', sum(param.numel() for param in net.parameters()))
-total_params = sum([param.nelement() for param in net.parameters()])
-print("Number of parameter: %.2fM" % (total_params/1e6))
-x = torch.randn(2, 3, 224, 224)
-print(x)
-print(x.shape)
-y = net(x)  # (2, 1, 224, 224)
-print(y)
-print(y.shape)
+if __name__ == '__main__':
+    net = AttU_Net(img_ch=3, output_ch=1)
+    print(net)
+    print('# of net parameters:', sum(param.numel() for param in net.parameters()))
+    total_params = sum([param.nelement() for param in net.parameters()])
+    print("Number of parameter: %.2fM" % (total_params/1e6))
+    x = torch.randn(2, 3, 224, 224)
+    print(x)
+    print(x.shape)
+    y = net(x)  # (2, 1, 224, 224)
+    print(y)
+    print(y.shape)
